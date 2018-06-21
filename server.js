@@ -7,7 +7,7 @@ const request = require('request');
 const cheerio = require('cheerio')
 
 //mongo
-const db = require("./models");
+const db = require("./models/Index");
 
 //mongoose
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/news-scraper";
@@ -31,7 +31,7 @@ app.get('/', function (req, res) {
 });
 
 app.get("/scrape", function(req, res){
-    request("https://vox.com",function(err, response ,html){
+    request("https://www.nytimes.com/",function(err, response ,html){
         const $ = cheerio.load(response.data)
         $(".title").each(function(i, element){
             let result = {};
